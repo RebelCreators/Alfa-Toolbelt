@@ -1,0 +1,11 @@
+{
+  "name": "alfa-toolbelt",
+  "version": "1.0.0",
+  "description": "Easier clustering and routing",
+  "main": "index.js",
+  "author": "Lorenzo Stanton",
+  "license": "Apache-2.0",
+  "dependencies": {
+  "afimport": "git+https://github.com/RebelCreators/AFImport.git#1.0.6"
+}
+}
