@@ -6,6 +6,7 @@
   "author": "Lorenzo Stanton",
   "license": "Apache-2.0",
   "dependencies": {
-  "afimport": "git+https://github.com/RebelCreators/AFImport.git#1.0.6"
-}
+    "afimport": "git+https://github.com/RebelCreators/AFImport.git#1.0.6",
+    "debug": "~2.6.9"
+  }
 }

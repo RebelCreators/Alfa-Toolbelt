@@ -1,6 +1,6 @@
 const cluster = require('cluster');
 const fs = require("fs");
-
+const debug = require('debug')("alfa-toolbelt");
 
 module.exports = function (callback) {
 // Pidfile contains master process PID.
@@ -19,7 +19,7 @@ module.exports = function (callback) {
         }
 
         cluster.on('died', function (worker) {
-            logger.warn('Worker ' + process.pid + ' died.');
+            debug('Worker ' + process.pid + ' died.');
             // Remove dead worker.
             delete workers[process.pid];
 
@@ -29,7 +29,7 @@ module.exports = function (callback) {
 
             // Restart on worker death.
 
-            logger.info('Worker ' + process.pid + ' restarting.');
+            debug('Worker ' + process.pid + ' restarting.');
             worker = cluster.fork();
             workers[process.pid] = worker;
         });
@@ -38,10 +38,10 @@ module.exports = function (callback) {
         // when master is terminated.
 
         function cleanup() {
-            logger.warn('Master stopping.');
+            debug('Master stopping.');
 
             for (var pid in workers) {
-                logger.warn('Kill worker: ' + pid);
+                debug('Kill worker: ' + pid);
                 process.kill(pid)
             }
 
@@ -66,10 +66,10 @@ module.exports = function (callback) {
 
         process.title = "com.rebelcreators.alfa.worker";
         process.on('SIGTERM', function () {
-            logger.warn('Stopping worker ' + process.pid);
+            debug('Stopping worker ' + process.pid);
         });
 
-        logger.info('Worker ' + process.pid + ' started.');
+        debug('Worker ' + process.pid + ' started.');
 
         callback();
     }
