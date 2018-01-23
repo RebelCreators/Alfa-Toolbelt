@@ -73,14 +73,15 @@ var defaultOptions = {
  *
  * Export Router
  *
- * @param {string} filePattern
- * @param {{namespace: ?string, subpath: ?string, version: ?string, router: ?Router}} options
- * @returns {Router}
+ * @param {Router} router
+ * @returns {Function}
  *
  * @static
  */
 module.exports = function (router) {
     return function (filePattern, options) {
         resolve(filePattern, options, router);
-    }
+
+        return router;
+    };
 };
